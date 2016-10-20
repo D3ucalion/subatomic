@@ -36,7 +36,7 @@ var Menu = {
             m('ul.nav.navbar-nav', {
               role: "navigation"
             }, [
-              m('a.navbar-brand', 'Meteor-Mithril'),
+              m('a.navbar-brand', 'SUBATOMIC'),
           		nav("Home",  "/"),
           		nav("About",  "/about"),
           		nav("Contact",  "/contact"),
