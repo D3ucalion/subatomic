@@ -30,10 +30,10 @@ var Menu = {
       m.redraw(true);
     }, 0)
     return [setFavicon(),
-    m('nav', {
+    m('nav.page-header', {
               role: "navigation"
             }, [        
-      m('div.nav-wrapper.page-header.container', [
+      m('div.nav-wrapper.container', [
         
             m('ul.right.hide-on-med-and-down#nav-mobile', [
               m('a.brand-logo.left',[m('span.img-thumbnail', [
