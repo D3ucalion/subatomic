@@ -3,6 +3,6 @@ contact = {
     var ctrl = this;    
   },
   view: function(ctrl){
-    return m('.jumbotron', 'CONTACT GOES HERE!')
+    return m('.jumbotron', 'coming soon')
   }
 }

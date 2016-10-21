@@ -30,7 +30,7 @@ var Menu = {
       m.redraw(true);
     }, 0)
     return [setFavicon(),
-      m('div.navbar.navbar-default.navbar-static-top', [
+      m('div.navbar.navbar-default.navbar-static-top.page-header', [
         m('.container',[
           m('.navbar-collapse.collapse#navbar-main', [
             m('ul.nav.navbar-nav', {
