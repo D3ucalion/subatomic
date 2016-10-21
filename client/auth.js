@@ -15,7 +15,9 @@ auth = {
             //TODO - Setup a "Toaster"
   			    console.log(err);
   			  }else{
-  			    console.log('success!');
+  			      console.log('success!');
+				  m.redraw(true);
+				  m.route('/')
 			    }
         });
 			}else{
