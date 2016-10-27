@@ -38,7 +38,7 @@ auth = {
           m('div', [
             m("section.signin", [ 
           		m(".container.text-center", [
-          			m(".row", [
+          			m("div.row", [
         			    m(".col-md-3.offset-md-3.form-box"),
             			m(".col-md-6.offset-md-3.form-box", [
             				m(".row", [
@@ -46,26 +46,24 @@ auth = {
           							m("h2", ctrl.signUp == true ? 'Sign up' : 'Sign in')
 						          ])
 					          ]),
-        					m("form[action='']", {onsubmit: ctrl.login}, [
-        						m(".form-group", [
-				      			  m("label[for='email']", [
-                        "Email Address ",
-                        m("span.required", "*")
-                      ]),
-      							  m("input.form-control[name='email'][placeholder='Email Address'][type='email'][id='username']")
-						        ]),
-        						m(".form-group", [
-        							m("label[for='password']", ["Password ",m("span.required", "*")]),
-        							m("input.form-control[name='password'][placeholder='Password'][type='password'][id='password']")
-    						    ]),
+        					m("form.col.s9[action='']", {onsubmit: ctrl.login}, [
+        						m(".input-field", [
+				      			  m("label[for='username']", [
+                                    "Email Address "
+                                  ]),
+                              m("input.validate.white[name='email'][type='email'][id='username'][required]")
+                            ]),
+                            m(".input-field", [
+                                m("label[for='password']", ["Password "]),
+                                m("input.validate.white[name='password'][type='password'][id='password'][minlength='4'][required]")
+                            ]),
         		  			ctrl.signUp == true ? [
-                      m(".form-group", [
-          							m("label[for='password']", [
-                          "Password Confirm ",
-                          m("span.required", "*")
-                        ]),
-          							m("input.form-control[name='password'][placeholder='Password'][type='password'][id='password']")
-      	  					  ])
+                          m(".input-field", [
+                                        m("label[for='password2']", [
+                              "Password Confirm "
+                            ]),
+                                m("input.validate.white[name='password'][type='password'][id='password2'][minlength='4'][required]")
+                      ])
                     ] : '',
       						  m(".col-md-4", [
           						m("button.btn.btn-primary.expand[type='submit']", 
