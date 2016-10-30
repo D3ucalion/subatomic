@@ -12,8 +12,8 @@ auth = {
   			};
 			  Accounts.createUser(auth, function(err) {
   			  if (err){
-            //TODO - Setup a "Toaster"
-  			    console.log(err);
+                  ctrl.toast(err);
+                  console.log(err);
   			  }else{
   			      console.log('success!');
 				  m.redraw(true);
@@ -24,6 +24,7 @@ auth = {
 				Meteor.loginWithPassword(e.target[0].value, e.target[1].value, function(err) {
 				  if (err){
 				    console.log(err);
+                      ctrl.toast(err);
 				  }else{
 				    console.log('success!');
 				    m.redraw(true);
@@ -31,57 +32,80 @@ auth = {
 				  }});
 			  }
         console.log(Meteor.user());
-      }  
+      }
+      ctrl.toast = function (err) {
+          let toaster = document.getElementById("toaster");
+          Meteor.sharedFunctions.fade("in", 350, toaster, true);
+
+          toaster.textContent = err.reason;
+          if(err.error > 500){
+              toaster.style.color = '#c22929';
+          }else if (err.error < 500 && err.error > 400){
+              toaster.style.color = '#c8b40a';
+          }else{
+              toaster.style.color = '#2d81bc';
+          }
+          console.log(err);
+          setTimeout (function(){
+              Meteor.sharedFunctions.fade("out", 350, toaster, true)
+          }, 5000)
+      }
     },
     view: function(ctrl){
-        return m('.jumbotron', [
+        return m('.container', [
           m('div', [
             m("section.signin", [ 
           		m(".container.text-center", [
           			m("div.row", [
-        			    m(".col-md-3.offset-md-3.form-box"),
-            			m(".col-md-6.offset-md-3.form-box", [
+            			m(".col.s8.form-box", [
             				m(".row", [
-          						m(".col-md-12", [
-          							m("h2", ctrl.signUp == true ? 'Sign up' : 'Sign in')
+          						m(".col", [
+          							m("h3.mono", ctrl.signUp == true ? 'Create Account' : 'Sign in')
 						          ])
 					          ]),
-        					m("form.col.s9[action='']", {onsubmit: ctrl.login}, [
+        					m("form.col.s12[action='']", {onsubmit: ctrl.login}, [
         						m(".input-field", [
-				      			  m("label[for='username']", [
+				      			  m("label.mono[for='username']", [
                                     "Email Address "
                                   ]),
                               m("input.validate.white[name='email'][type='email'][id='username'][required]")
                             ]),
                             m(".input-field", [
-                                m("label[for='password']", ["Password "]),
+                                m("label.mono[for='password']", ["Password "]),
                                 m("input.validate.white[name='password'][type='password'][id='password'][minlength='4'][required]")
                             ]),
         		  			ctrl.signUp == true ? [
                           m(".input-field", [
-                                        m("label[for='password2']", [
+                                        m("label.mono[for='password2']", [
                               "Password Confirm "
                             ]),
                                 m("input.validate.white[name='password'][type='password'][id='password2'][minlength='4'][required]")
                       ])
                     ] : '',
-      						  m(".col-md-4", [
-          						m("button.btn.btn-primary.expand[type='submit']", 
-                        ctrl.signUp == true ? "Sign up" : "Sign in"),
+      						  m(".col.s4.center", [
+          						m("button.createBtn[type='submit']",
+                        ctrl.signUp == true ? "sign up" : "sign in"),
       						  ]),
-      							m(".col-md-4", [
-      						  	m("a.Pointer", {onclick: function(){m.route('/forgot-password')}}, "Forgot Password?")
+      							m(".col.s4.center", [
+      						  	m("a.Pointer.mono", {onclick: function(){m.route('/forgot-password')}}, "Forgot Password?")
 			      			  ]),  
-      							m(".col-md-6", [
-      							  m("a.Pointer", {
+      							m(".col.s4.center", [
+      							  m("button.createBtn", {
                         onclick: function(){
                           ctrl.signUp == true ? ctrl.signUp = false : ctrl.signUp = true
                         }
                       }, 
-      							  ctrl.signUp == true ? "Already have an account?" : "Don't have an account?")
+      							  ctrl.signUp == true ? "sign in" : "sign up")
 						        ])
 					        ]),
-				        ])
+				        ]),
+                        [
+                            m(".row", [
+                                m(".col.s3.m4", [
+                                    m("div.card-panel.toaster#toaster", "Err")
+                                ])
+                            ])
+                        ]
 			        ])
 		        ])
   	      ])
