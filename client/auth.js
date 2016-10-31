@@ -5,10 +5,22 @@ auth = {
     ctrl.login = function(e){
 			e.preventDefault();
 			if (ctrl.signUp == true){
-  			if (e.target[1].value != e.target[2].value) return;	
+            if(document.getElementById('password2') == null) return;
+  			if (document.getElementById('password').value 
+                != document.getElementById('password2').value) {
+                let toaster = document.getElementById("toaster");
+                toaster.style.color = '#c8b40a';
+                toaster.textContent = "Password Mismatch";
+                  Meteor.sharedFunctions.fade("in", 350, toaster, true);
+                setTimeout (function(){
+                      Meteor.sharedFunctions.fade("out", 350, toaster, true)
+                  }, 4000)
+                return;
+            };	
   			let auth = {
-  			  email: e.target[0].value,
-  			  password: e.target[1].value
+              username: document.getElementById('username').value,
+  			  email: document.getElementById('email').value,
+  			  password: document.getElementById('password').value
   			};
 			  Accounts.createUser(auth, function(err) {
   			  if (err){
@@ -21,8 +33,8 @@ auth = {
 			    }
 
         });
-			}else{
-				Meteor.loginWithPassword(e.target[0].value, e.target[1].value, function(err) {
+			}else if (ctrl.signUp == false){
+				Meteor.loginWithPassword(document.getElementById('email').value, document.getElementById('password').value, function(err) {
 				  if (err){
 				    console.log(err);
                       ctrl.toast(err);
@@ -51,6 +63,21 @@ auth = {
               Meteor.sharedFunctions.fade("out", 350, toaster, true)
           }, 5000)
       }
+      ctrl.resetPwd = function (e){
+          console.log(document.getElementById('email').value)
+          let auth = {
+  			  email: document.getElementById('email').value
+  			};
+          Accounts.forgotPassword(auth, function(err) {
+				  if (err){
+				    console.log(err);
+                      ctrl.toast(err);
+				  }else{
+				    console.log('success!');
+				    m.redraw(true);
+				    //m.route('/')
+				  }})
+      }
     },
     view: function(ctrl){
         return m('.container', [
@@ -65,12 +92,12 @@ auth = {
 						          ])
 					          ]),
         					m("form.col.s12[action='']", {onsubmit: ctrl.login}, [
-                                m(".input-field", [
+                                ctrl.signUp == true ? m(".input-field", [
                                     m("label.mono[for='username']", [
                                         "Username "
                                     ]),
                                     m("input.validate.white[name='username'][type='text'][id='username'][required][minlength='4']")
-                                ]),
+                                ]) : '',
         						m(".input-field", [
 				      			  m("label.mono[for='email']", [
                                     "Email Address "
@@ -94,7 +121,7 @@ auth = {
                         ctrl.signUp == true ? "sign up" : "sign in"),
       						  ]),
       							m(".col.s4.center", [
-      						  	m("a.Pointer.mono", {onclick: function(){m.route('/forgot-password')}}, "Forgot Password?")
+      						  	m("a.Pointer.mono", {onclick: ctrl.resetPwd}, "Forgot Password?")
 			      			  ]),  
       							m(".col.s4.center", [
       							  m("button.createBtn", {
