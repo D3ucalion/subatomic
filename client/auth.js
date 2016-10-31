@@ -69,7 +69,7 @@ auth = {
                                     m("label.mono[for='username']", [
                                         "Username "
                                     ]),
-                                    m("input.validate.white[name='username'][type='username'][id='username'][required][minlength='4']")
+                                    m("input.validate.white[name='username'][type='text'][id='username'][required][minlength='4']")
                                 ]),
         						m(".input-field", [
 				      			  m("label.mono[for='email']", [
