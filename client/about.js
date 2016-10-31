@@ -1,7 +1,7 @@
 about = {
   controller: function(){
     var ctrl = this;
-    document.getElementById("nav").className = "transparent";
+    //document.getElementById("nav").className = "transparent";
     ctrl.startTime = function() {
 
       var today = new Date();

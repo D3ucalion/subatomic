@@ -87,7 +87,7 @@ auth = {
           			m("div.row", [
             			m(".col.s8.form-box", [
             				m(".row", [
-          						m(".col", [
+          						m(".col.s12.center", [
           							m("h3.mono", ctrl.signUp == true ? 'Create Account' : 'Sign in')
 						          ])
 					          ]),

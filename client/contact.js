@@ -1,7 +1,7 @@
 contact = {
   controller: function(){
     var ctrl = this;
-    document.getElementById("nav").className = "transparent";
+    //document.getElementById("nav").className = "transparent";
   },
   view: function(ctrl){
     return m('.container', [
