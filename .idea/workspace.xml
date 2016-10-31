@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c7ddc4ea-0929-4f1f-97ac-434bd0af5f44" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/about.js" afterPath="$PROJECT_DIR$/client/about.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/styles/app.css" afterPath="$PROJECT_DIR$/client/styles/app.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/auth.js" afterPath="$PROJECT_DIR$/client/auth.js" />
     </list>
     <ignored path="subatomic.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -55,7 +54,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="about.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="seeder.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/seeder.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="publications.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/publications.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="about.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/about.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="227">
@@ -75,18 +94,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="materialize.min.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/materialize-css/dist/js/materialize.min.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="7" column="13852" selection-start-line="7" selection-start-column="13841" selection-end-line="7" selection-end-column="13852" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="contact.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/contact.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -97,11 +104,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="auth.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="auth.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/auth.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="37" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
+            <state relative-caret-position="221">
+              <caret line="70" column="39" selection-start-line="70" selection-start-column="39" selection-end-line="70" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -112,16 +119,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="448">
               <caret line="43" column="39" selection-start-line="43" selection-start-column="39" selection-end-line="43" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="shared.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/shared.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="53" selection-start-line="14" selection-start-column="53" selection-end-line="14" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -140,13 +137,13 @@
         <option value="$PROJECT_DIR$/node_modules/materialize-css/package.js" />
         <option value="$PROJECT_DIR$/node_modules/materialize-css/bin/materialize.js" />
         <option value="$PROJECT_DIR$/lib/shared.js" />
-        <option value="$PROJECT_DIR$/client/auth.js" />
         <option value="$PROJECT_DIR$/client/results.js" />
         <option value="$PROJECT_DIR$/client/app.js" />
         <option value="$PROJECT_DIR$/client/contact.js" />
         <option value="$PROJECT_DIR$/client/home.js" />
         <option value="$PROJECT_DIR$/client/styles/app.css" />
         <option value="$PROJECT_DIR$/client/about.js" />
+        <option value="$PROJECT_DIR$/client/auth.js" />
       </list>
     </option>
   </component>
@@ -429,12 +426,12 @@
       <option name="presentableId" value="Default" />
       <updated>1477011216303</updated>
       <workItem from="1477768796922" duration="274000" />
-      <workItem from="1477769098704" duration="15965000" />
+      <workItem from="1477769098704" duration="17352000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16239000" />
+    <option name="totallyTimeSpent" value="17626000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -781,14 +778,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/shared.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -829,10 +818,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/auth.js">
+    <entry file="file://$PROJECT_DIR$/client/about.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="37" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
+        <state relative-caret-position="227">
+          <caret line="22" column="72" selection-start-line="22" selection-start-column="72" selection-end-line="22" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/seeder.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/publications.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -847,10 +860,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/about.js">
+    <entry file="file://$PROJECT_DIR$/client/auth.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="22" column="72" selection-start-line="22" selection-start-column="72" selection-end-line="22" selection-end-column="72" />
+        <state relative-caret-position="221">
+          <caret line="70" column="39" selection-start-line="70" selection-start-column="39" selection-end-line="70" selection-end-column="39" />
           <folding />
         </state>
       </provider>

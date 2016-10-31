@@ -19,6 +19,7 @@ auth = {
 				  m.redraw(true);
 				  m.route('/')
 			    }
+
         });
 			}else{
 				Meteor.loginWithPassword(e.target[0].value, e.target[1].value, function(err) {
@@ -64,11 +65,17 @@ auth = {
 						          ])
 					          ]),
         					m("form.col.s12[action='']", {onsubmit: ctrl.login}, [
+                                m(".input-field", [
+                                    m("label.mono[for='username']", [
+                                        "Username "
+                                    ]),
+                                    m("input.validate.white[name='username'][type='username'][id='username'][required][minlength='4']")
+                                ]),
         						m(".input-field", [
-				      			  m("label.mono[for='username']", [
+				      			  m("label.mono[for='email']", [
                                     "Email Address "
                                   ]),
-                              m("input.validate.white[name='email'][type='email'][id='username'][required]")
+                              m("input.validate.white[name='email'][type='email'][id='email'][required]")
                             ]),
                             m(".input-field", [
                                 m("label.mono[for='password']", ["Password "]),
