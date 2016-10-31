@@ -126,3 +126,16 @@ div.card-panel.toaster#toaster{
 body{
   background-color: #333333;
 }
+
+.gadgetsContainer{
+    width: 1280px;
+    height: 720px;
+    background: #111;
+    opacity: 0.85;
+    vertical-align: middle;
+    margin: auto;
+    margin-top: 5%;
+    color: #fff;
+    overflow-x: hidden;
+    border: 5px inset #000;
+}

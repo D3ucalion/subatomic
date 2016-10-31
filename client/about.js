@@ -15,15 +15,20 @@ about = {
       var t = setTimeout(ctrl.startTime, 500);
     }
   },
-  view: function(ctrl){ return m('div', {class: "gadgetsContainer"},
-      [m('button', {class: "createBtn", id: "txt"}, "Drag"), m('button',{class: "createBtn", id: "txt"}, "and")],
+  view: function(ctrl){ return m('div.row.gadgetsContainer', [m("div.toast.mono#coords", "")], [m(".col.s12",
+      [m('button', {class: "createBtn", id: "txt"}, ">>>>>"),m("br"), m('button', {class: "createBtn", id: "txt"}, ">>>>>"),
+          m("br"), m('button', {class: "createBtn", id: "txt"}, "^^^"), m("br"), m('button',{class: "createBtn", id: "txt"}, "^^^"), m("br")],
 
-      [m('button', {class: "createBtn", id: "txt"}, "Drop"), m('button', {class: "createBtn", id: "txt"}, "me")]
-  ); }
+      [m('button', {class: "createBtn", id: "txt"}, ">>>>>"),m("br"), m('button', {class: "createBtn", id: "txt"}, ">>>>>"),
+          m("br"), m('button', {class: "createBtn", id: "txt"}, "^^^"), m("br"), m('button', {class: "createBtn", id: "txt"}, "^^^")]
+  )])}
 }
 $(function() {
   $('body').on('mousedown', '#txt', function() {
     $(this).addClass('draggable').parents().on('mousemove', function(e) {
+        if((e != null || e != undefined) && m.route() == "/about"){
+
+        document.getElementById("coords").textContent = "X: "+e.pageX +" | Y: "+e.pageY+" Type: "+e.type;}
       $('.draggable').offset({
         top: e.pageY - $('.draggable').outerHeight() / 2,
         left: e.pageX - $('.draggable').outerWidth() / 2
