@@ -25,10 +25,13 @@ about = {
 }
 $(function() {
   $('body').on('mousedown', '#txt', function() {
+      let debugFrame = {
+        coords: document.getElementById("coords")
+    }
     $(this).addClass('draggable').parents().on('mousemove', function(e) {
         if((e != null || e != undefined) && m.route() == "/about"){
 
-        document.getElementById("coords").textContent = "X: "+e.pageX +" | Y: "+e.pageY+" Type: "+e.type;}
+        debugFrame.coords.textContent = "X: "+e.pageX +" | Y: "+e.pageY+" Type: "+e.type;}
       $('.draggable').offset({
         top: e.pageY - $('.draggable').outerHeight() / 2,
         left: e.pageX - $('.draggable').outerWidth() / 2
