@@ -93,24 +93,24 @@ auth = {
 					          ]),
         					m("form.col.s12[action='']", {onsubmit: ctrl.login}, [
                                 ctrl.signUp == true ? m(".input-field", [
-                                    m("label.mono[for='username']", [
+                                    m("label.mono#label[for='username']", [
                                         "Username "
                                     ]),
                                     m("input.validate.white[name='username'][type='text'][id='username'][required][minlength='4']")
                                 ]) : '',
         						m(".input-field", [
-				      			  m("label.mono[for='email']", [
+				      			  m("label.mono#label[for='email']", [
                                     "Email Address "
                                   ]),
                               m("input.validate.white[name='email'][type='email'][id='email'][required]")
                             ]),
                             m(".input-field", [
-                                m("label.mono[for='password']", ["Password "]),
+                                m("label.mono#label[for='password']", ["Password "]),
                                 m("input.validate.white[name='password'][type='password'][id='password'][minlength='4'][required]")
                             ]),
         		  			ctrl.signUp == true ? [
                           m(".input-field", [
-                                        m("label.mono[for='password2']", [
+                                        m("label.mono#label[for='password2']", [
                               "Password Confirm "
                             ]),
                                 m("input.validate.white[name='password'][type='password'][id='password2'][minlength='4'][required]")

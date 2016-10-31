@@ -22,7 +22,7 @@ results = {
     }
   },
   view: function(ctrl){
-    return m('.jumbotron', [
+    return m('.container', [
         m('h3.mono', "Result mapping from a local mongo DB and from an External API")
       ],[
         m('button.btn.createBtn', {

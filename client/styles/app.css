@@ -12,7 +12,6 @@ body{
 }
 li.active.glow-font a{
   color: #c0dabe;
-  line-height: 48px;
 }
 a.glow-font{
     color: #c0dabe;
@@ -139,3 +138,13 @@ body{
     overflow-x: hidden;
     border: 5px inset #000;
 }
+
+.input-field label.active#label{
+    font-size: 1.0rem;
+    color: #c0dabe;
+    -webkit-transform: translateY(-150%);
+    transform: translateY(-150%)
+}
+
+
+
