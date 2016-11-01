@@ -11,10 +11,10 @@ body{
   height: 100%;
 }
 li.active.glow-font a{
-  color: #c0dabe;
+  color: #c0dabe !important;
 }
 a.glow-font{
-    color: #c0dabe;
+    color: #c0dabe !important;
 }
 li a{
     text-shadow: 0;
@@ -50,7 +50,7 @@ div.card-panel.toaster#toaster{
     -moz-osx-font-smoothing: grayscale;
 
 }
-.mono{
+.mono {
     text-shadow: 0;
     color: #fff;
     font-family: monospace;
@@ -58,6 +58,11 @@ div.card-panel.toaster#toaster{
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+a.mobile{
+    color: #fff !important;
+}
+
 .Pointer{
   cursor: pointer;
 }
@@ -146,5 +151,33 @@ body{
     transform: translateY(-150%)
 }
 
+.navicon {
+    /* This is all that's required */
+    position: relative;
+    /* This just makes it look like a button for the demo */
+    font-family: sans-serif;
+    color: white;
+    text-decoration: none;
+    background: black;
+    border-radius: 4px;
+    padding: .5em .75em .5em 2em;
+    display: inline-block;
+}
+.navicon:before {
+    position: absolute;
+    top: 50%;
+    left: .75em;
+    width: .8em;
+    height: .8em;
+    margin-top: -.4em;
+    content: '';
+    background-repeat: no-repeat;
+    background-size: contain;
 
+    /* white navicon */
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHMAAABkCAMAAACCTv/3AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRF////5ubmueBsSwAAAAJ0Uk5T/wDltzBKAAAAPklEQVR42uzYQQ0AAAgDseHfNC4IyVoD912WAACUm3uampqampqamq+aAAD+IVtTU1NTU1NT0z8EAFBsBRgAX+kR+Qam138AAAAASUVORK5CYII=);
+
+    /* black navicon */
+    /*background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHMAAABkCAMAAACCTv/3AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRFAAAA5ubmSUUG+gAAAAJ0Uk5T/wDltzBKAAAAPklEQVR42uzYQQ0AAAgDseHfNC4IyVoD912WAACUm3uampqampqamq+aAAD+IVtTU1NTU1NT0z8EAFBsBRgAX+kR+Qam138AAAAASUVORK5CYII=);*/
+}
 

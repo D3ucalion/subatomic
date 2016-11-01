@@ -37,13 +37,24 @@ var Menu = {
           m('a.brand-logo.left',[m('a.left.glow-font.mono', [
               "SubAtomic"
           ])], ''),
+          [m("a.createBtn.Pointer.navicon[data-activates='mobile']", {onclick: function (e) {
+              document.getElementById('mobile').style = "transform: translateX(0px);"
+              }},
+              "Menu")],
           m('ul.right.hide-on-med-and-down#nav-mobile', [
           		nav("Home",  "/"),
           		nav("About",  "/about"),
           		nav("Contact",  "/contact"),
           		Meteor.user() ? nav("Results",  "/results") : '',
                 Meteor.user() ? logout('Logout', '/') : nav("Sign in",  "/auth")
-          	])
+          	]),
+          m("ul.side-nav.page-header#mobile", [
+              nav("Home",  "/"),
+              nav("About",  "/about"),
+              nav("Contact",  "/contact"),
+              Meteor.user() ? nav("Results",  "/results") : '',
+              Meteor.user() ? logout('Logout', '/') : nav("Sign in",  "/auth")
+          ])
       ])])])]
   	function btn(name, route){
 	  	var isCurrent = (m.route() === route);
@@ -59,10 +70,10 @@ var Menu = {
         m.route(route); 
       };
 		  return m("li"+
-    		(isCurrent ? ".active.glow-font.mono" : ""), (!isCurrent ? {
+    		(isCurrent ? ".active.glow-font.mono" : ".mono"), (!isCurrent ? {
           onclick: click
         } :""),[
-          m('a', name)
+          m('a.mobile', name)
         ]);
 	  }
       function setFavicon(){
@@ -111,6 +122,7 @@ App.controller = reactive(function() {
   var ctrl = this;
 
     import 'materialize-css/dist/css/materialize.min.css';
+
     import 'materialize-css/dist/js/materialize.min.js';
 
     switch (m.route()){
@@ -139,6 +151,10 @@ App.controller = reactive(function() {
     "/results": Results
   });  
 });
+
+$(document).ready(function () {
+
+})
 
 //Tell Meteor to render the Mithril App
 if (Meteor.isClient) {
