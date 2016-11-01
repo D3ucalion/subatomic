@@ -37,10 +37,10 @@ var Menu = {
           m('a.brand-logo.left',[m('a.left.glow-font.mono', [
               "SubAtomic"
           ])], ''),
-          [m("a.createBtn.Pointer.navicon[data-activates='mobile']", {onclick: function (e) {
+          [m("a.button-collapse.transparent.createBtn.Pointer.navicon[data-activates='mobile']", {onclick: function (e) {
               document.getElementById('mobile').style = "transform: translateX(0px);"
               }},
-              "Menu")],
+              m("i", " ^ "))],
           m('ul.right.hide-on-med-and-down#nav-mobile', [
           		nav("Home",  "/"),
           		nav("About",  "/about"),
