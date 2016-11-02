@@ -80,18 +80,16 @@ auth = {
       }
     },
     view: function(ctrl){
-        return m('.container', [
-          m('div', [
-            m("section.signin", [ 
-          		m(".container.text-center", [
+        return m('.container.center', [
+            m("div.signin.center", [ 
           			m("div.row", [
-            			m(".col.s8.form-box", [
+            			m(".col.s12.form-box", [
             				m(".row", [
           						m(".col.s12.center", [
           							m("h3.mono", ctrl.signUp == true ? 'Create Account' : 'Sign in')
 						          ])
 					          ]),
-        					m("form.col.s12[action='']", {onsubmit: ctrl.login}, [
+        					m("form.col.s12.center[action='']", {onsubmit: ctrl.login}, [
                                 ctrl.signUp == true ? m(".input-field", [
                                     m("label.mono#label[for='username']", [
                                         "Username "
@@ -141,9 +139,7 @@ auth = {
                             ])
                         ]
 			        ])
-		        ])
   	      ])
-        ])
       ])
     }
 }

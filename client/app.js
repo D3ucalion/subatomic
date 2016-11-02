@@ -44,6 +44,7 @@ var Menu = {
           m('ul.right.hide-on-med-and-down#nav-mobile', [
           		nav("Home",  "/"),
           		nav("About",  "/about"),
+                nav("Blog",  "/blog"),
           		nav("Contact",  "/contact"),
           		Meteor.user() ? nav("Results",  "/results") : '',
                 Meteor.user() ? logout('Logout', '/') : nav("Sign in",  "/auth")
@@ -51,6 +52,7 @@ var Menu = {
           m("ul.side-nav.page-header#mobile", [
               nav("Home",  "/"),
               nav("About",  "/about"),
+              nav("Blog",  "/blog"),
               nav("Contact",  "/contact"),
               Meteor.user() ? nav("Results",  "/results") : '',
               Meteor.user() ? logout('Logout', '/') : nav("Sign in",  "/auth")
@@ -140,6 +142,7 @@ App.controller = reactive(function() {
   Contact = new Page(contact);
   Auth = new Page(auth);
   Results = new Page(results);
+  Posts = new Page(posts);
   //Setup Routing Mode - https://lhorie.github.io/mithril/mithril.route.html#mode
   m.route.mode = "pathname";
   //Setup the routing - https://lhorie.github.io/mithril/mithril.route.html#defining-routes
@@ -148,7 +151,8 @@ App.controller = reactive(function() {
     "/about": About,
     "/contact": Contact,
     "/auth": Auth,
-    "/results": Results
+    "/results": Results,
+    "/blog": Posts
   });  
 });
 
