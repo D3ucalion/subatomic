@@ -86,7 +86,7 @@ auth = {
             			m(".col.s12.form-box", [
             				m(".row", [
           						m(".col.s12.center", [
-          							m("h3.mono", ctrl.signUp == true ? 'Create Account' : 'Sign in')
+          							m("h3.mono", ctrl.signUp == true ? 'Create Account' : 'sign in')
 						          ])
 					          ]),
         					m("form.col.s12.center[action='']", {onsubmit: ctrl.login}, [

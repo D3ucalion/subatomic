@@ -35,12 +35,12 @@ var Menu = {
             }, [        
       m('div.nav-wrapper.container', [
           m('a.brand-logo.left',[m('a.left.glow-font.mono', [
-              "SubAtomic"
+              "Sub-Atomic"
           ])], ''),
-          [m("a.button-collapse.transparent.createBtn.Pointer.navicon[data-activates='mobile']", {onclick: function (e) {
+          [m("a.button-collapse.transparent.createBtn.Pointer[data-activates='mobile']", {onclick: function (e) {
               document.getElementById('mobile').style = "transform: translateX(0px);"
               }},
-              m("i", " ^ "))],
+              m("i.material-icons", "menu"))],
           m('ul.right.hide-on-med-and-down#nav-mobile', [
           		nav("Home",  "/"),
           		nav("About",  "/about"),
@@ -137,23 +137,23 @@ App.controller = reactive(function() {
     }
 
     //Add the pages to the parent App view object.
-  Home = new Page(home);
-  About = new Page(about);
-  Contact = new Page(contact);
-  Auth = new Page(auth);
-  Results = new Page(results);
-  Posts = new Page(posts);
-  //Setup Routing Mode - https://lhorie.github.io/mithril/mithril.route.html#mode
-  m.route.mode = "pathname";
-  //Setup the routing - https://lhorie.github.io/mithril/mithril.route.html#defining-routes
-  m.route(document.body, "/", {
-    "/": Home,
-    "/about": About,
-    "/contact": Contact,
-    "/auth": Auth,
-    "/results": Results,
-    "/blog": Posts
-  });  
+    Home = new Page(home);
+    About = new Page(about);
+    Contact = new Page(contact);
+    Auth = new Page(auth);
+    Results = new Page(results);
+    Posts = new Page(posts);
+    //Setup Routing Mode - https://lhorie.github.io/mithril/mithril.route.html#mode
+    m.route.mode = "pathname";
+    //Setup the routing - https://lhorie.github.io/mithril/mithril.route.html#defining-routes
+    m.route(document.body, "/", {
+        "/": Home,
+        "/about": About,
+        "/contact": Contact,
+        "/auth": Auth,
+        "/results": Results,
+        "/blog": Posts
+    });
 });
 
 $(document).ready(function () {
