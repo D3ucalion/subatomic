@@ -48,34 +48,7 @@ controller: function(){
                 m("li.waves-effect", {onclick: ctrl.changeMonth}, [m("a.mono", "dec")]),
               m("li.waves-effect", [m("a.mono", [m("i.material-icons", "chevron_right")])])
              ])])]),
-              m(".row", [
-                m(".col.s12.center.flow-text", [m('h3.white-text.mono', Meteor.sharedFunctions.blogPost1.heading),
-                  m("p.mono#blogContent", [Meteor.sharedFunctions.blogPost1.intro
-
-                  ]),
-                    m("p.mono#blogContent", [Meteor.sharedFunctions.blogPost1.body
-
-                    ], [m('pre',[m('code.lang-javascript',
-                        "Home = new Page(home);\n" +
-      "About = new Page(about);\n"+
-     "Contact = new Page(contact);\n"+
-      "Auth = new Page(auth);\n"+
-      "Results = new Page(results);\n"+
-      "Posts = new Page(posts);\n"+
-      "m.route.mode = 'pathname';\n"+
-      "m.route(document.body, '/', {\n"+
-          "'/': Home,\n"+
-          "'/about': About,\n"+
-          "'/contact': Contact,\n"+
-          "'/auth': Auth,\n"+
-          "'/results': Results,\n"+
-          "'/blog': Posts\n"+
-     "})\n")])]),
-                    m("p.mono#blogContent", [Meteor.sharedFunctions.blogPost1.end
-
-                    ])
-                ])
-              ])
+              m(".row", Meteor.sharedFunctions.blogPost1())
     ])
   }
 }
