@@ -56,21 +56,21 @@ controller: function(){
                     m("p.mono#blogContent", [Meteor.sharedFunctions.blogPost1.body
 
                     ], [m('pre',[m('code.lang-javascript',
-                        "Home = new Page(home); " +
-      "About = new Page(about);"+
-     "Contact = new Page(contact);"+
-      "Auth = new Page(auth);"+
-      "Results = new Page(results);"+
-                        "Posts = new Page(posts);"+
-      "m.route.mode = 'pathname';"+
-      "m.route(document.body, "/", {"+
-          ""/": Home,"+
-          "'/about': About,"+
-          "'/contact': Contact,"+
-          "'/auth': Auth,"+
-          "'/results': Results,"+
-          "'/blog': Posts"+
-     "})")])]),
+                        "Home = new Page(home);\n" +
+      "About = new Page(about);\n"+
+     "Contact = new Page(contact);\n"+
+      "Auth = new Page(auth);\n"+
+      "Results = new Page(results);\n"+
+      "Posts = new Page(posts);\n"+
+      "m.route.mode = 'pathname';\n"+
+      "m.route(document.body, '/', {\n"+
+          "'/': Home,\n"+
+          "'/about': About,\n"+
+          "'/contact': Contact,\n"+
+          "'/auth': Auth,\n"+
+          "'/results': Results,\n"+
+          "'/blog': Posts\n"+
+     "})\n")])]),
                     m("p.mono#blogContent", [Meteor.sharedFunctions.blogPost1.end
 
                     ])
