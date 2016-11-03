@@ -49,7 +49,7 @@ controller: function(){
               m("li.waves-effect", [m("a.mono", [m("i.material-icons", "chevron_right")])])
              ])])]),
               m(".row", [
-                m(".col.s12.center", [m('h3.white-text.mono', Meteor.sharedFunctions.blogPost1.heading),
+                m(".col.s12.center.flow-text", [m('h3.white-text.mono', Meteor.sharedFunctions.blogPost1.heading),
                   m("p.mono#blogContent", [Meteor.sharedFunctions.blogPost1.intro
 
                   ]),
