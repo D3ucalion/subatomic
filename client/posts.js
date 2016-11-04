@@ -1,6 +1,7 @@
 posts = {
 controller: function(){
     var ctrl = this;
+    
     ctrl.month = "nov";
     ctrl.year = "2016";
     ctrl.changeYear = function(e){
@@ -31,6 +32,7 @@ controller: function(){
     //document.getElementById("nav").className = "transparent";
   },
   view: function(ctrl){
+      Prism.highlightAll();
     return m('.container', [
         m(".row", [
         m(".col.s12.center", [
@@ -39,13 +41,6 @@ controller: function(){
               m("li.waves-effect", {onclick: ctrl.changeYear}, [m("a.mono", "2015")]),
               m("li.indexBtn", {onclick: ctrl.changeYear}, [m("a.mono.glow-font", "2016")]),
               m("li.waves-effect", {onclick: ctrl.changeYear}, [m("a.mono", "2017")]),
-              m("li.waves-effect", [m("a.mono", [m("i.material-icons", "chevron_right")])])
-             ]),
-            m("ul.pagination", [
-              m("li.disabled", [m("a.mono", [m("i.material-icons", "chevron_left")])]),
-              m("li.waves-effect",{onclick: ctrl.changeMonth}, [m("a.mono", "oct")]),
-              m("li.indexBtn", {onclick: ctrl.changeMonth}, [m("a.mono.glow-font", "nov")]),
-                m("li.waves-effect", {onclick: ctrl.changeMonth}, [m("a.mono", "dec")]),
               m("li.waves-effect", [m("a.mono", [m("i.material-icons", "chevron_right")])])
              ])])]),
               m(".row", Meteor.sharedFunctions.blogPost1())
