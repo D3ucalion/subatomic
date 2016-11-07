@@ -1,10 +1,10 @@
 posts = {
 controller: function(){
     var ctrl = this;
-    
-    ctrl.month = "nov";
-    ctrl.year = "2016";
-    ctrl.changeYear = function(e){
+    let blog = document.getElementById('BlogContainer');
+    ctrl.blogSwitch = Meteor.sharedFunctions.blogPost1();
+    ctrl.blog = "1";
+    ctrl.changeBlog = function(e){
         console.log(e);
         let siblings = e.target.parentNode.parentNode.children; 
         console.log(siblings);
@@ -14,19 +14,19 @@ controller: function(){
         
         e.target.className = "mono glow-font";
         e.target.parentNode.className = "indexBtn";
-        ctrl.year = e.target.textContent;
-    }
-    ctrl.changeMonth = function(e){
-        console.log(e);
-        let siblings = e.target.parentNode.parentNode.children; 
-        console.log(siblings);
-        for (let i = 0; i<siblings.length; i++){
-            siblings[i].className = "waves-effect";
+        ctrl.Blog = e.target.textContent;
+
+        switch (ctrl.blog){
+            case "0":
+            case "2":
+                ctrl.blogSwitch = Meteor.sharedFunctions.blogPost2();
+
+                break;
+            default:
+                ctrl.blogSwitch = Meteor.sharedFunctions.blogPost1();
+                break;
+            m.redraw(true);
         }
-        
-        e.target.className = "mono glow-font";
-        e.target.parentNode.className = "indexBtn";
-        ctrl.month = e.target.textContent;
     }
     
     //document.getElementById("nav").className = "transparent";
@@ -38,12 +38,12 @@ controller: function(){
         m(".col.s12.center", [
             m("ul.pagination", [
               m("li.disabled.mono", [m("a.mono", [m("i.material-icons", "chevron_left")])]),
-              m("li.waves-effect", {onclick: ctrl.changeYear}, [m("a.mono", "2015")]),
-              m("li.indexBtn", {onclick: ctrl.changeYear}, [m("a.mono.glow-font", "2016")]),
-              m("li.waves-effect", {onclick: ctrl.changeYear}, [m("a.mono", "2017")]),
+              m("li.waves-effect", {onclick: ctrl.changeBlog}, [m("a.mono", "0")]),
+              m("li.indexBtn", {onclick: ctrl.changeBlog}, [m("a.mono.glow-font", "1")]),
+              m("li.waves-effect", {onclick: ctrl.changeBlog}, [m("a.mono", "2")]),
               m("li.waves-effect", [m("a.mono", [m("i.material-icons", "chevron_right")])])
              ])])]),
-              m(".row", Meteor.sharedFunctions.blogPost1())
+              m(".row#BlogContainer", ctrl.blogSwitch)
     ])
   }
 }

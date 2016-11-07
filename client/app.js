@@ -34,7 +34,7 @@ var Menu = {
               role: "navigation"
             }, [        
       m('div.nav-wrapper.container', [
-          m('a.brand-logo.left',[m('a.left.glow-font.mono', [
+          m('a.brand-logo.left.hide-on-med-and-down',[m('a.left.glow-font.mono', [
               "Sub-Atomic"
           ])], ''),
           [m("a.button-collapse.transparent.createBtn.Pointer[data-activates='mobile']", {onclick: function (e) {
@@ -44,7 +44,7 @@ var Menu = {
           m('ul.right.hide-on-med-and-down#nav-mobile', [
           		nav("Home",  "/"),
           		nav("About",  "/about"),
-                nav("Blog",  "/blog"),
+                nav("Blog",  "/blog/1"),
           		nav("Contact",  "/contact"),
           		Meteor.user() ? nav("Results",  "/results") : '',
                 Meteor.user() ? logout('Logout', '/') : nav("Sign in",  "/auth")
@@ -52,7 +52,7 @@ var Menu = {
           m("ul.side-nav.page-header#mobile", [
               nav("Home",  "/"),
               nav("About",  "/about"),
-              nav("Blog",  "/blog"),
+              nav("Blog",  "/blog/1"),
               nav("Contact",  "/contact"),
               Meteor.user() ? nav("Results",  "/results") : '',
               Meteor.user() ? logout('Logout', '/') : nav("Sign in",  "/auth")
@@ -136,6 +136,22 @@ App.controller = reactive(function() {
             break;
     }
 
+    ctrl.chkPlace = function(p){
+        switch (p) {
+            case '0':
+                return true;
+                break;
+            case '1':
+                return true;
+                break;
+            case '2':
+                return true;
+                break;
+            default:
+                return false;
+        }
+    };
+
     //Add the pages to the parent App view object.
     Home = new Page(home);
     About = new Page(about);
@@ -143,6 +159,14 @@ App.controller = reactive(function() {
     Auth = new Page(auth);
     Results = new Page(results);
     Posts = new Page(posts);
+    Posts = {
+        view: function(){
+            var p = m.route.param("place");
+            return ctrl.chkPlace(p) ? {
+                "0": new Page(Meteor.sharedFunctions.blogPost0()), "1": new Page(Meteor.sharedFunctions.blogPost1()), "2": new Page (Meteor.sharedFunctions.blogPost2())}[p].view() :
+                [m.route('/blog/1'), Meteor.sharedFunctions.blogPost1().view()];
+        }}
+
     //Setup Routing Mode - https://lhorie.github.io/mithril/mithril.route.html#mode
     m.route.mode = "pathname";
     //Setup the routing - https://lhorie.github.io/mithril/mithril.route.html#defining-routes
@@ -152,7 +176,7 @@ App.controller = reactive(function() {
         "/contact": Contact,
         "/auth": Auth,
         "/results": Results,
-        "/blog": Posts
+        "/blog/:place": Posts
     });
 });
 
