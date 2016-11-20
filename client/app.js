@@ -47,7 +47,7 @@ var Menu = {
               document.getElementById('mobile').style = "transform: translateX(0%);"
               document.getElementById('pageRoot').addEventListener('click', mobileNavLostFocus)
               }},
-              m("i.material-icons", "menu"))],
+              m("i.large.material-icons", "menu"))],
           m('ul.right.hide-on-med-and-down#nav-mobile', [
           		nav("Home",  "/"),
           		nav("About",  "/about"),
