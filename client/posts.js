@@ -30,10 +30,10 @@ controller: function(){
         }
         setTimeout(function(){
         
-        //m.redraw(true);
+        m.redraw(true);
       
         }, 0)
-        Prism.highlightAll();
+        //Prism.highlightAll();
     }
     
     //document.getElementById("nav").className = "transparent";

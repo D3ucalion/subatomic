@@ -5,7 +5,8 @@ about = {
   },
   view: function(ctrl){ return m('.section', [
       m(".row", [
-        m(".col.s12", [
+          m(".col.s2"),
+        m(".col.s9.center", [
           m(".card.hoverable.grey.darken-4", [
             
             m(".card-content", [
