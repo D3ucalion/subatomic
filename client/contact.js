@@ -4,42 +4,18 @@ contact = {
     //document.getElementById("nav").className = "transparent";
   },
   view: function(ctrl){
-    return m('.container', [
+    return m('.section', [
       m(".row", [
-        m(".col.s6", [
-          m(".card.hoverable", [
-            m(".card-image", [
-              m("img[src='images/atomMan.jpg']"),
-              m("span.card-title", "")
-            ]),
+        m(".col.s12", [
+          m(".card.hoverable.grey.darken-4", [
+            
             m(".card-content", [
-              m("p", [
-
+              m("p.mono.light-blue-text.text-lighten-5", [m("a[href='https://github.com/D3ucalion'][target='_blank']", "Find me on Github")
+                  
               ])
-            ]),
-            m(".card-action", [
-              m("a.mono[href='#']", "Info")
             ])
           ])
-        ]),
-        m(".col.s6",[
-              m(".card.hoverable", [
-                m(".card-image", [
-                  m("img[src='images/alien.jpg']"),
-                  m("span.card-title", "")
-                ]),
-                m(".card-content", [
-                  m("p", [
-
-                  ])
-                ]),
-                m(".card-action", [
-                  m("a.mono[href='#']", "Info")
-                ])
-              ])
-            ]
-
-        )
+        ])
       ])
     ])
   }

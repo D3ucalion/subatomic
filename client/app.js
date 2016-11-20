@@ -26,19 +26,26 @@ var Menu = {
     var ctrl = this;
 	},
   view: function(ctrl){
-    setTimeout(function(){
-      m.redraw(true);
-    }, 0)
+    
+    
     return [setFavicon(),m("div.navbar-fixed", [
-    m('nav.page-header.transparent#nav', {
-              role: "navigation"
-            }, [        
+    m('nav.page-header.transparent#nav',{eventSet: false, config: function(){
+        //if (window.pageYOffset > 165 || window.pageYOffset < 40) return;
+        console.log(this.attrs.eventSet)
+        if(this.attrs.eventSet == true) return;
+        
+        console.log('loaded')
+        this.attrs.eventSet = scroll();
+        
+        
+    }, role: "navigation"},[        
       m('div.nav-wrapper.container', [
           m('a.brand-logo.left.hide-on-med-and-down',[m('a.left.glow-font.mono', [
               "Sub-Atomic"
           ])], ''),
-          [m("a.button-collapse.transparent.createBtn.Pointer[data-activates='mobile']", {onclick: function (e) {
-              document.getElementById('mobile').style = "transform: translateX(0px);"
+          [m("a.button-collapse.transparent.createBtn.Pointer#mobileBtn[data-activates='mobile']", {onclick: function (e) {
+              document.getElementById('mobile').style = "transform: translateX(0%);"
+              document.getElementById('pageRoot').addEventListener('click', mobileNavLostFocus)
               }},
               m("i.material-icons", "menu"))],
           m('ul.right.hide-on-med-and-down#nav-mobile', [
@@ -50,12 +57,12 @@ var Menu = {
                 Meteor.user() ? logout('Logout', '/') : nav("Sign in",  "/auth")
           	]),
           m("ul.side-nav.page-header#mobile", [
-              nav("Home",  "/"),
-              nav("About",  "/about"),
-              nav("Blog",  "/blog/1"),
-              nav("Contact",  "/contact"),
-              Meteor.user() ? nav("Results",  "/results") : '',
-              Meteor.user() ? logout('Logout', '/') : nav("Sign in",  "/auth")
+              mobileNav("Home",  "/"),
+              mobileNav("About",  "/about"),
+              mobileNav("Blog",  "/blog/1"),
+              mobileNav("Contact",  "/contact"),
+              Meteor.user() ? mobileNav("Results",  "/results") : '',
+              Meteor.user() ? logout('Logout', '/') : mobileNav("Sign in",  "/auth")
           ])
       ])])])]
   	function btn(name, route){
@@ -75,9 +82,48 @@ var Menu = {
     		(isCurrent ? ".active.glow-font.mono" : ".mono"), (!isCurrent ? {
           onclick: click
         } :""),[
-          m('a.mobile', name)
+          m('a.nonMobile', name)
         ]);
 	  }
+      function mobileNav(name, route){
+		  var isCurrent = (m.route() === route);
+  		var click = function(){ 
+        m.route(route); 
+      };
+		  return m("li"+
+    		(isCurrent ? ".active.glow-font.mono" : ".mono"), (!isCurrent ? {
+          onclick: click
+        } :""),[m('a.mobile', name)
+          
+        ]);
+	  }
+      //custom nav function on scroll event.
+      function scroll(){
+	    
+	    window.addEventListener("scroll", scrollFade, false);
+	    return true;
+	}
+	
+	function scrollFade(){
+		
+		//if (this.route.substring(1, 7) === "portal") return;
+        if (window.pageYOffset > 175 || window.pageYOffset < 40) return;
+        
+		let e = document.getElementById('nav');
+	    if(window.pageYOffset >= 100) {
+            e.className = 'page-header-trans transparent';
+            
+        }else { e.className = 'page-header transparent';
+            
+        }
+   		
+	}
+      //Fix to close mobile menu when user clicks away.
+      function mobileNavLostFocus(){
+          console.log('mobile nav hidden');
+          document.getElementById('mobile').style = "transform: translateX(-100%);";
+          document.getElementById('pageRoot').removeEventListener('click', mobileNavLostFocus);
+      }
       function setFavicon(){
           if(document.getElementById('Favi') == null || undefined){
                   let head = document.head || (document.head = document.getElementsByTagName('head')[0]);
@@ -113,7 +159,7 @@ var Menu = {
 function Page(content, placePlugin){
   this.view = function(){
 		return [ Menu.view(), 
-      m(".container", content) 
+      m(".container#pageRoot", content) 
     ];
 	}
 }
@@ -126,7 +172,7 @@ App.controller = reactive(function() {
     import 'materialize-css/dist/css/materialize.min.css';
 
     import 'materialize-css/dist/js/materialize.min.js';
-
+    
     switch (m.route()){
         case "/":
             console.log("works")
@@ -181,7 +227,13 @@ App.controller = reactive(function() {
 });
 
 $(document).ready(function () {
+(function($){
+  $(function(){
 
+    //$('#mobileBtn').sideNav();
+
+  }); // end of document ready
+})(jQuery); // end of jQuery name space
 })
 
 //Tell Meteor to render the Mithril App

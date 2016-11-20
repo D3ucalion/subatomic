@@ -18,22 +18,29 @@ controller: function(){
 
         switch (ctrl.blog){
             case "0":
+                ctrl.blogSwitch = Meteor.sharedFunctions.blogPost0(ctrl);
             case "2":
-                ctrl.blogSwitch = Meteor.sharedFunctions.blogPost2();
+                ctrl.blogSwitch = Meteor.sharedFunctions.blogPost2(ctrl);
 
                 break;
             default:
-                ctrl.blogSwitch = Meteor.sharedFunctions.blogPost1();
+                ctrl.blogSwitch = Meteor.sharedFunctions.blogPost1(ctrl);
                 break;
-            m.redraw(true);
+            
         }
+        setTimeout(function(){
+        
+        //m.redraw(true);
+      
+        }, 0)
+        Prism.highlightAll();
     }
     
     //document.getElementById("nav").className = "transparent";
   },
   view: function(ctrl){
-      Prism.highlightAll();
-    return m('.container', [
+      
+    return m('.section', [
         m(".row", [
         m(".col.s12.center", [
             m("ul.pagination", [

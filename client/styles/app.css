@@ -1,3 +1,23 @@
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 1px;
+	background: #FFF url(/images/BG2.jpg) top left repeat;
+}
+
+::-webkit-scrollbar
+{
+	width: 12px;
+	background: #FFF url(/images/BG2.jpg) top left repeat;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 1px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #1e1e1e;
+}
+
 html {
   background: #FFF url(/images/BG2.jpg) top left repeat;
   height: 100%;
@@ -72,7 +92,20 @@ div.card-panel.toaster#toaster{
 }
 
 a.mobile{
-    color: #fff !important;
+    color: aliceblue !important;
+    font-size: 1.4em !important;
+    font-family: monospace;
+    margin: 2%;
+}
+a.nonMobile{
+    color: aliceblue !important;
+    
+    font-family: monospace;
+}
+
+#pageRoot{
+    margin: auto;
+    height: 100%;
 }
 
 .Pointer{
@@ -99,10 +132,7 @@ a.mobile{
 }
 .page-header-trans{
     background-color: transparent;
-    background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+    
 
 
 }
