@@ -49,41 +49,10 @@ chat = {
                 console.log("removed");
             }
         });
-        ctrl.initChat = (e) => {
-            let query = Messages.find({
-                room: e
-            });
-            let handle = query.observeChanges({
-                changed: (id, chatAttr) => {
-                    console.log('changed');
-                    for (let value of ctrl.chatSub) {
-                        console.log(value.id);
-                        value.cid == id ? value.text = chatAttr.text : '';
-                        value.cid == id ? value.edited = true : '';
-
-                    }
-                    m.redraw(true);
-                },
-                added: (id, chatAttr) => {
-                    chatAttr.cid = id;
-                    ctrl.chatSub.push(chatAttr);
-                    console.log('added');
-                    let debounce = Meteor.sharedFunctions.debounce(() => {
-                        console.log('redrawing');
-                        ctrl.loadResults = true;
-                        m.redraw(true);
-                    }, 200, false);
-
-                    ctrl.debounce(debounce);
-                },
-                removed: (id, chatAttr) => {
-
-                    console.log("removed");
-                }
-            })
-        }
-        ctrl.initChat("Default");
-
+        
+        ctrl.msgQuery;
+        ctrl.msgHandle;
+        
         ctrl.chatBot = (m, x) => {
             console.log("Chat BoT initialized." + m.toLowerCase());
 
@@ -129,7 +98,7 @@ chat = {
 
             console.log('|' + msgTxt.length)
             if (msgTxt == "") return;
-            if (msgTxt.length <= 3) return;
+            if (msgTxt.length < 3) return;
             document.getElementById('chatSend').value = "";
             let msg = {
                 text: msgTxt,
@@ -165,7 +134,7 @@ chat = {
             console.log(roomTxt)
             console.log('|' + roomTxt.length)
             if (roomTxt == "") return;
-            if (roomTxt.length <= 3) return;
+            if (roomTxt.length < 3) return;
             document.getElementById('roomSend').value = "";
             let room = {
                 room: roomTxt,
@@ -185,8 +154,7 @@ chat = {
                         seed: true
                     });
                     ctrl.selectedRoom = room.room;
-                    ctrl.chatSub = [];
-                    ctrl.initChat(room.room);
+                    ctrl.selectRoom(ctrl.selectedRoom);
                     console.log(response);
 
                     return response;
@@ -220,12 +188,43 @@ chat = {
         }
         ctrl.selectRoom = (r) => {
 
-            ctrl.selectedRoom = r.target.id;
+            ctrl.selectedRoom = r == null || r == undefined ? "Default" : r.target.id;
             console.log(ctrl.selectedRoom);
+            r == null || r == undefined ? "" : ctrl.msgHandle.stop();
             ctrl.chatSub = [];
-            ctrl.initChat(r.target.id);
-        }
+            ctrl.msgQuery = Messages.find({
+                room: ctrl.selectedRoom
+            });
+            ctrl.msgHandle = ctrl.msgQuery.observeChanges({
+            changed: (id, chatAttr) => {
+                console.log('changed');
+                for (let value of ctrl.chatSub) {
+                    console.log(value.id);
+                    value.cid == id ? value.text = chatAttr.text : '';
+                    value.cid == id ? value.edited = true : '';
 
+                }
+                m.redraw(true);
+            },
+            added: (id, chatAttr) => {
+                chatAttr.cid = id;
+                ctrl.chatSub.push(chatAttr);
+                console.log('added');
+                let debounce = Meteor.sharedFunctions.debounce(() => {
+                    console.log('redrawing');
+                    ctrl.loadResults = true;
+                    m.redraw(true);
+                }, 200, false);
+
+                ctrl.debounce(debounce);
+            },
+            removed: (id, chatAttr) => {
+
+                console.log("removed");
+            }
+        })
+        }
+        ctrl.selectRoom();
         ctrl.editMessage = (e) => {
             console.log(e.target.parentNode.id);
             ctrl.messageEditId = e.target.parentNode.id;
