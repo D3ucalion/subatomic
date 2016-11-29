@@ -20,31 +20,48 @@ auth = {
   			let auth = {
               username: document.getElementById('username').value,
   			  email: document.getElementById('email').value,
-  			  password: document.getElementById('password').value
+  			  password: document.getElementById('password').value,
+              profile: {
+                  online: false,
+                  lastLogin: Date.now(),
+                  idle: true,
+                  photo: Meteor.sharedFunctions.defaultProfilePhoto()
+              }
   			};
 			  Accounts.createUser(auth, function(err) {
   			  if (err){
                   ctrl.toast(err);
                   console.log(err);
   			  }else{
-  			      console.log('success!');
-				  m.redraw(true);
-				  m.route('/')
+  			        console.log(Meteor.user().username);
+                    let time = new Date().getTime();
+      		        let route = m.route();
+        	        Session.setAuth('user', Meteor.user().username);
+                    Session.setAuth('time', time);
+                    Session.setAuth('photo', Meteor.user().profile.photo);
+                    console.log(Session.get("user"))
+				    m.route() == "/auth" ? m.route('/') : window.location = route;
 			    }
 
         });
 			}else if (ctrl.signUp == false){
-				Meteor.loginWithPassword(document.getElementById('email').value, document.getElementById('password').value, function(err) {
+				Meteor.loginWithPassword(document.getElementById('email').value, 
+                                         document.getElementById('password').value, function(err) {
 				  if (err){
 				    console.log(err);
                       ctrl.toast(err);
 				  }else{
-				    console.log('success!');
-				    m.redraw(true);
-				    m.route('/')
+				    console.log(Meteor.user().username);
+                    let time = new Date().getTime();
+      		        let route = m.route();
+        	        Session.setAuth('user', Meteor.user().username);
+                    Session.setAuth('time', time);
+                    Session.setAuth('photo', Meteor.user().profile.photo);
+                    console.log(Session.get("user"))
+				    m.route() == "/auth" ? m.route('/') : window.location = route;
+                    
 				  }});
 			  }
-        console.log(Meteor.user());
       }
       ctrl.toast = function (err) {
           let toaster = document.getElementById("toaster");

@@ -9,12 +9,12 @@ home = {
           m(".card.hoverable.grey.darken-4", [
             
             m(".card-content", [
-              m("p.mono.light-blue-text.text-lighten-5", ["Games coming soon"
+              m("p.mono.flow-text.light-blue-text.text-lighten-5", ["You will find a few useful utilities on the tools page."
 
               ])
             ]),
             m(".card-action", [
-              m("a.mono[href='#']", "Info")
+              m("button.mono.createBtn",{onclick: ()=>{m.route('/tools')}}, "Tools")
             ])
           ])
         ]),
@@ -22,12 +22,12 @@ home = {
               m(".card.hoverable.grey.darken-4", [
                 
                 m(".card-content", [
-                  m("p.mono.light-blue-text.text-lighten-5", ["Chat coming soon"
+                  m("p.mono.flow-text.light-blue-text.text-lighten-5", ["Chat beta available now. Please sign in to use the chat room."
 
                   ])
                 ]),
                 m(".card-action", [
-                  m("a.mono[href='#']", "Info")
+                  m("button.mono.createBtn",{onclick: ()=>{m.route('/chat')}}, "Chat")
                 ])
               ])
             ]),
@@ -35,12 +35,12 @@ home = {
               m(".card.hoverable.grey.darken-4", [
                
                 m(".card-content", [
-                  m("p.mono.light-blue-text.text-lighten-5", ["Blog in progress"
+                  m("p.mono.flow-text.light-blue-text.text-lighten-5", ["Blog in progress, more posts coming soon."
 
                   ])
                 ]),
                 m(".card-action", [
-                  m("a.mono.Pointer",{onclick: function(){m.route('/blog/1')}}, "Blog")
+                  m("button.mono.createBtn",{onclick: ()=>{m.route('/blog/1')}}, "Blog")
                 ])
               ])
             ])
