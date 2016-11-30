@@ -35,12 +35,23 @@ var Menu = {
     m('nav.page-header.transparent#nav', {
                 config: function () {
                     //if (window.pageYOffset > 165 || window.pageYOffset < 40) return;
-
+                   
                     this.eventSet = Meteor.sharedFunctions.debounce(function () {
                         scroll();
                     }, 250)();
 
+                    $('#sidenav-overlay').trigger('click');
+                     $(document).ready(function () {
+                    $(".dropdown-button").dropdown();
+                    $('#mobileBtn').sideNav({
+                      menuWidth: 300, // Default is 240
+                      edge: 'right', // Choose the horizontal origin
+                      closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+                      draggable: true // Choose whether you can drag to open on touch screens
+                    });
 
+
+                    })
                 },
                 role: "navigation"
             }, [
@@ -48,12 +59,12 @@ var Menu = {
           m('a', {class: (Session.get('user') != null || undefined)&& window.innerWidth > 992 ? 'brand-logo left' : 'brand-logo center'}, [m('a.left.glow-font.mono', [
               m('img.responsive-img.circle#logo[src="/images/sci-atom.png"]')
           ])], ''),
-          [m("a.button-collapse.transparent.createBtn.Pointer#mobileBtn[data-activates='mobile']", {
+          [m("a.button-collapse.right.transparent.navBtn.Pointer#mobileBtn[data-activates='mobile']", /*{
                             onclick: function (e) {
                                 document.getElementById('mobile').style = "transform: translateX(0%);"
                                 document.getElementById('pageRoot').addEventListener('click', mobileNavLostFocus)
                             }
-                        },
+                        },*/
                         m("i.large.material-icons", "menu"))],
           m('ul.right.hide-on-med-and-down#nav-mobile', [
           		nav("Home", "/"),
@@ -337,15 +348,6 @@ App.controller = reactive(() => {
     focused = document.hasFocus()
 });
 
-$(document).ready(function () {
-    (function ($) {
-        $(function () {
-            $(".dropdown-button").dropdown();
-            $('#mobileBtn').sideNav();
-
-        }); // end of document ready
-    }); // end of jQuery name space
-})
 
 //Tell Meteor to render the Mithril App
 if (Meteor.isClient) {
