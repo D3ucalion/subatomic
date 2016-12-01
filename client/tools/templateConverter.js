@@ -152,7 +152,7 @@ window.templateConverter = (function () {
 
         view: function (ctrl) {
             Prism.highlightAll();
-            return m('div.section', m('h4.center.mono', "Mirthril template converter"), m('div.row', m(".col.s12.center", [
+            return m(".container", [ m('div.section', m('h4.center.mono', "Mirthril template converter"), m('div.row', m(".col.s12.center", [
           m(".card.hoverable.grey.darken-4", m("h5.mono.center", "Paste HTML below and click convert."), [[m("button.btn.createBtn", {
                         onclick: ctrl.convert
                     }, "Convert"), m('br'), m('br'), //m('br'), m("button.btn", {id: 'nested', onclick: ctrl.Nested}, "Nested"),
@@ -165,7 +165,7 @@ window.templateConverter = (function () {
                         m('br'),
         				m("code.lang-javascript", ctrl.output())
 
-			])]])])))
+			])]])])))])
         }
     }
 })()

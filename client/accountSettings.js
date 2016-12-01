@@ -284,7 +284,7 @@ accountSettings = {
         }
     },
     view: function (ctrl) {
-        return m('section.upload.section.center', [m(".row", [
+        return m(".container", [ m('section.upload.section.center', [m(".row", [
         m(".col.s12", {
                     config: function (element, isInitialized) {
                         if (!isInitialized) {
@@ -311,7 +311,7 @@ accountSettings = {
               m("div.mono.light-blue-text.text-lighten-5#limitEditField", m("h5.mono", "Upload a profile photo"), m('h5.mono', 'Max file size: ' + Meteor.sharedFunctions.humanReadableFileSize(ctrl.maxuploadsize)), m(".uploader", [m(".buffer.text-xs-center", {
                                     id: 'uploaderStep1'
                                 }, [
-                                    m("h5.mono", "Drag and drop photo here to upload"),
+                                    m("h5.mono", "Drag and drop photo to upload"),
                                     m("h5.mono", "- OR -"),
                                     m("h5", {
                                         id: 'failmsg'
@@ -349,6 +349,6 @@ accountSettings = {
 
       ])
 
-    ])
+    ])])
     }
 }

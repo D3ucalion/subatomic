@@ -19,7 +19,7 @@
 }
 
 html {
-  background: #FFF url(/images/BG2.jpg) top left repeat;
+  
   height: 100%;
 }
 nav a .page-header.brand-logo{
@@ -432,7 +432,9 @@ thead, tbody { display: block; }
     font-weight: 400;
     src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://fonts.gstatic.com/s/materialicons/v18/2fcrYFNaTjcS6g4U3t-Y5ewrjPiaoEww8AihgqWRJAo.woff) format('woff');
 }
-
+.dropdown-content li a:hover {
+   background-color: #333333;
+}
 .material-icons {
     font-family: 'Material Icons';
     font-weight: normal;
@@ -452,7 +454,7 @@ li{
     list-style-type: none;
 }
 .uploader{
-    width: 550px;
+    width: 100%;
     
     border: 1px dashed #010910;
     margin: auto;

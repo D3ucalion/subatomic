@@ -6,7 +6,7 @@ tools = {
     },
     view: function (ctrl) {
 
-        return m('.section', [
+        return m(".container", [ m('.section', [
       m(".row", [
 
         m(".col.s4", [
@@ -52,6 +52,6 @@ tools = {
           ])
         ])
 
-      ])])])
+      ])])])])
     }
 }

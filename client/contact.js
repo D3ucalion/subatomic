@@ -4,7 +4,7 @@ contact = {
     //document.getElementById("nav").className = "transparent";
   },
   view: function(ctrl){
-    return m('.section', [
+    return m(".container", [ m('.section', [
       m(".row", [
         m(".col.s12", [
           m(".card.hoverable.grey.darken-4", [
@@ -17,6 +17,6 @@ contact = {
           ])
         ])
       ])
-    ])
+    ])])
   }
 }

@@ -42,14 +42,21 @@ var Menu = {
 
                     $('#sidenav-overlay').trigger('click');
                      $(document).ready(function () {
-                    $(".dropdown-button").dropdown();
+                    $(".dropdown-button").dropdown({
+                        inDuration: 300,
+                        outDuration: 225,
+                        constrain_width: true,
+                        hover: true,
+                        gutter: 0,
+                        belowOrigin: true, 
+                        alignment: "right"});
                     $('#mobileBtn').sideNav({
                       menuWidth: 300, // Default is 240
                       edge: 'right', // Choose the horizontal origin
                       closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
                       draggable: true // Choose whether you can drag to open on touch screens
                     });
-
+                    $('.parallax').parallax();
 
                     })
                 },
@@ -65,31 +72,32 @@ var Menu = {
                                 document.getElementById('pageRoot').addEventListener('click', mobileNavLostFocus)
                             }
                         },*/
-                        m("i.large.material-icons", "menu"))],
+                        m("i.large.material-icons", "view_module"))],
           m('ul.right.hide-on-med-and-down#nav-mobile', [
           		nav("Home", "/"),
           		nav("About", "/about"),
                 nav("Blog", "/blog/1"),
           		nav("Contact", "/contact"),
-                nav("Tools", "/tools"),
                 Session.get('user') != null || undefined ? nav("Chat", "/chat") : '',
-          		//Session.get('user') != null || undefined ? nav("Account", "/account") : '',
-                Session.get('user') != null || undefined ? logout('Logout', '/') : nav("Sign in", "/auth"),
-                Session.get('user') != null || undefined ? m('li', {
-                            onclick: () => {
-                                m.route('/account')
-                            }
-                        }, m('a', m('img.circle.responsive-img', {
+                navDropdown("Tools", {route1: "/template-converter", name1:"Mithril Converter", route2: "/base64", name2: "Base64 converter"}),
+                Session.get('user') != null || undefined ? m('li', m('a.dropdown-button[data-activates="accountDropdown"]', m('img.circle.responsive-img', {
                             src: Session.get('photo')
-                        }))) : '',
-                Session.get('user') != null || undefined ? m('li', m('a', 'Hello, ' + Session.get('user'))) : ''
+                        }), m("i.material-icons.right", "arrow_drop_down"))) : nav("Sign in", "/auth")
           	]),
+          Session.get('user') != null || undefined ?
+          m("ul.dropdown-content.mono.grey.darken-4[id='accountDropdown']", [
+              m('li', m('a.blue-text.text-lighten-4', 'Hello, ' + Session.get('user'))),
+              m("li.divider"),
+              m("li", [m("a.Pointer.blue-text.text-lighten-4",{onclick: ()=> {m.route('/account')}}, "Account settings")]),
+              m("li.divider"),
+              logout('Logout', '/')              
+             ]) : "",
+          //mobile menu
           m("ul.side-nav.page-header#mobile", [
               mobileNav("Home", "/"),
               mobileNav("About", "/about"),
               mobileNav("Blog", "/blog/1"),
               mobileNav("Contact", "/contact"),
-              mobileNav("Tools", "/tools"),
               Session.get('user') != null || undefined ? mobileNav("Chat", "/chat") : '',
               Session.get('user') != null || undefined ? mobileNav("Account", "/account") : '',
               Session.get('user') != null || undefined ? logout('Logout', '/') : mobileNav("Sign in", "/auth")
@@ -121,7 +129,17 @@ var Menu = {
           m('a.nonMobile', name)
         ]);
         }
-
+        function navDropdown(name, routes) {
+            return m("li",m("ul.dropdown-content.mono.grey.darken-4[id='navDropdown']", [
+              m("li", [m("a.Pointer.blue-text.text-lighten-4",{onclick: ()=> {m.route(routes.route1)}}, routes.name1)]),
+              m("li.divider"),
+              m("li", [m("a.Pointer.blue-text.text-lighten-4",{onclick: ()=> {m.route(routes.route2)}}, routes.name2)]),
+              m("li.divider"),
+              m("li", [m("a.Pointer.blue-text.text-lighten-4", "Coming soon")])
+             ]), [
+          m('a.nonMobile.dropdown-button[data-activates="navDropdown"]',[m("i.material-icons.right", "arrow_drop_down")], name)
+        ]);
+        }
         function mobileNav(name, route) {
             var isCurrent = (m.route() === route);
             var click = function () {
@@ -157,12 +175,12 @@ var Menu = {
             }
 
         }
-        //Fix to close mobile menu when user clicks away.
+        /*//Fix to close mobile menu when user clicks away.
         function mobileNavLostFocus() {
             console.log('mobile nav hidden');
             document.getElementById('mobile').style = "transform: translateX(-100%);";
             document.getElementById('pageRoot').removeEventListener('click', mobileNavLostFocus);
-        }
+        }*/
 
         function setFavicon() {
             if (document.getElementById('Favi') == null || undefined) {
@@ -206,7 +224,7 @@ var Menu = {
                 //window.location.reload()
             };
             return m('li', [
-        m("a.Pointer", {
+        m("a.Pointer.blue-text.text-lighten-4", {
                     onclick: () => {
                         Meteor.logout();
                         Session.clearAuth();
@@ -223,7 +241,7 @@ var Menu = {
 function Page(content, placePlugin) {
     this.view = function () {
         return [Menu.view(),
-      m(".container#pageRoot", content)
+      m("#pageRoot", content)
     ];
     }
 }
@@ -274,7 +292,6 @@ App.controller = reactive(() => {
     Base64 = new Page(base64);
     Account = Session.get('user') != null || undefined ? new Page(accountSettings) : new Page(auth);
     Chat = Session.get('user') != null || undefined ? new Page(chat) : new Page(auth);
-    Tools = new Page(tools);
     Quizzing = new Page(quizzing);
     Posts = new Page(posts);
     Posts = {
@@ -297,7 +314,6 @@ App.controller = reactive(() => {
         "/about": About,
         "/contact": Contact,
         "/auth": Auth,
-        "/tools": Tools,
         "/template-converter": TemplateConverter,
         "/base64": Base64,
         "/account": Account,

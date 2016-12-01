@@ -266,9 +266,11 @@ chat = {
     },
     view: (ctrl) => {
 
-        return m('.section', [
+        return m(".container", [ m('.section', [
       m(".row", [
-        m(".col.s2.#chatWell.card", ctrl.loadResults ? ctrl.rooms.map((res) => {
+        ctrl.editingRoom == false ? m(".col.s12", [
+          m(".card.hoverable.grey.darken-4", [
+            m(".card-content#chatWell",m(".row", [m(".col.s3", ctrl.loadResults ? ctrl.rooms.map((res) => {
                     return [
               m("tr.mono.light-blue-text.text-lighten-5", [m('td', [m('span', {
                             class: ctrl.selectedRoom == res.room ? "active mono Pointer glow-font" : "mono Pointer",
@@ -280,12 +282,10 @@ chat = {
                         }, 'settings') : ''])])])
 
             ]
-                }) : [m('span.mono', ' Loading...')], m('div.input-field', [m('i.small.material-icons.prefix.mono.glow-font.Pointer', {
-                    onclick: ctrl.sendRoom
-                }, '+')], [m('label.mono#label[for="roomSend"]', "channel name")], [m('input.mono.glow-font#roomSend[name="roomSend"][minlength="3"][type="text"]')])),
-        ctrl.editingRoom == false ? m(".col.s10", [
-          m(".card.hoverable.grey.darken-4", [
-            m(".card-content#chatWell", [m('span.card-title.mono', "General Chat")],
+                }) : [m('span.mono', ' Loading...')], m('div.input-field', [m('label.mono#label[for="roomSend"]', "create room")], [m('input.mono.glow-font#roomSend[name="roomSend"][minlength="3"][type="text"]', {
+                    onchange: ctrl.sendRoom
+                })])),
+        m(".col.s9", [m('span.card-title.mono', "Chat")],
                             m('table', [m('thead', [m('tr', [m('th[data-field="name"]')], [m('th[data-field="message"]')])])], [m('tbody#chatLog', {
                                     config: () => {
                                         let dbncScroll = Meteor.sharedFunctions.debounce(() => {
@@ -309,11 +309,9 @@ chat = {
 
             ]
                                 }) : [m('span.mono', ' Loading...')])], [m('br'),
-                                    ], m('div.input-field', [m('button.btn.sendBtn.right', {
-                                onclick: ctrl.sendMessage
-                            }, [m('i.small.material-icons', 'play_arrow')])], [m('i.material-icons.prefix.mono.glow-font', 'chat_bubble')], [m('label.mono#label[for="chatSend"]', "Type a message")], [m('input.mono#chatSend[name="chatSend"][minlength="3"][type="text"]')])))
+                                    ], m('div.input-field', [m('i.material-icons.prefix.mono.glow-font', 'chat_bubble')], [m('label.mono#label[for="chatSend"]', "Type a message")], [m('input.mono#chatSend[name="chatSend"][minlength="3"][type="text"]')])))]))
           ])
-      ]) : m(".col.s10", [
+      ]) : m(".col.s12", [
           m(".card.hoverable.grey.darken-4", [
             m(".card-content", [m('span.card-title.mono', "Channel settings")],
                             m('table', [m('thead', [m('tr', [m('th[data-field="name"]')], [m('th[data-field="message"]')])])], [m('tbody#chatLog',
@@ -332,6 +330,6 @@ chat = {
 
             )]))
           ])
-      ])])])
+      ])])])])
     }
 }

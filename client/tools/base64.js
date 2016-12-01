@@ -203,7 +203,7 @@ base64 = {
     }
   },
   view: function(ctrl){
-    return m('section.upload.section.center', [m(".row", [
+    return m(".container", [ m('section.upload.section.center', [m(".row", [
         m(".col.s12",{
             		config: function(element, isInitialized) {
             			if (!isInitialized) {
@@ -218,7 +218,7 @@ base64 = {
               ]),
               m('hr'),
               m("div.mono.light-blue-text.text-lighten-5#limitEditField",m("h5.mono", ""), m('h5.mono', 'Max file size: '+Meteor.sharedFunctions.humanReadableFileSize(ctrl.maxuploadsize) ), m(".uploader", [m(".buffer.text-xs-center",{id: 'uploaderStep1'}, [
-                                    m("h5.mono", "Drag and drop photo here to convert"),
+                                    m("h5.mono", "Drag and drop photo to convert"),
                                     m("h5.mono", "- OR -"),
                                     m("h5", {id: 'failmsg'}, ""),
                                     m("button.fileUpload.createBtn[data-toggle='tooltip'][title='click here to select a file'][type='button']", "Browse Files", [
@@ -245,6 +245,6 @@ base64 = {
         
       ])
 
-    ])
+    ])])
   }
 }

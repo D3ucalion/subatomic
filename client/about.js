@@ -4,7 +4,7 @@ about = {
 
     },
     view: function (ctrl) {
-        return m('.section', [
+        return m(".container", [ m('.section', [
       m(".row", [
           m(".col.s2", m(".card.hoverable.grey.darken-4", [m(".card-content", [
 
@@ -20,6 +20,6 @@ about = {
           ])
         ])
       ])
-    ])
+    ])])
     }
 }
