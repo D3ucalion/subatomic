@@ -27,3 +27,4 @@ u2622:persistent-session
 momentjs:moment
 fourseven:scss@3.8.0
 materialize:materialize@=0.97.6
+kadira:dochead

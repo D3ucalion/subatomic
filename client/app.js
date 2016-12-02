@@ -63,7 +63,7 @@ var Menu = {
                 role: "navigation"
             }, [
       m('div.nav-wrapper.container', [
-          m('a', {class: (Session.get('user') != null || undefined)&& window.innerWidth > 992 ? 'brand-logo left' : 'brand-logo center'}, [m('a.left.glow-font.mono', [
+          m('a', {class: window.innerWidth > 992 ? 'brand-logo left' : 'brand-logo center'}, [m('a.left.glow-font.mono', [
               m('img.responsive-img.circle#logo[src="/images/sci-atom.png"]')
           ])], ''),
           [m("a.button-collapse.right.transparent.navBtn.Pointer#mobileBtn[data-activates='mobile']", /*{
@@ -368,6 +368,8 @@ App.controller = reactive(() => {
 //Tell Meteor to render the Mithril App
 if (Meteor.isClient) {
     Meteor.startup(function () {
-        m.module(document.body, App)
+        m.module(document.body, App);
+        let metaInfo = {name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"};
+        DocHead.addMeta(metaInfo);
     });
 }

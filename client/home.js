@@ -28,7 +28,7 @@ home = {
           m(".card.hoverable.grey.darken-4.icon-block", [
             
             m(".card-content.center", [
-              m("p.mono.flow-text.light-blue-text.text-lighten-5", ["You will find a few useful utilities on the tools page."
+              m("p.mono.flow-text.light-blue-text.text-lighten-5", ["You will find a few useful utilities under the tools menu."
 
               ])
             ]),
