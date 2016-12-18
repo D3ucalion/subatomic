@@ -35,7 +35,7 @@ hygro = {
               m("tr.mono.light-blue-text.text-lighten-5", [m('td', [m('span', {
                                         id: res.key,
                                         onclick: ctrl.selectRoom
-                                    }, res.name + " ")], 
+                                    }, res.name + " "+moment(res.id.creationTime).fromNow())], 
             m("p.mono.light-blue-text.text-lighten-5", [m("span",{class: res.temp < 18 ? "red-text" : "green-text"}, "Temp: " +res.temp +"°C")
                   
               ]),
