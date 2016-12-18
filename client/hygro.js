@@ -10,7 +10,7 @@ hygro = {
                 } else if (response) {
 
                     console.log(response);
-                    ctrl.Readings = response.data;
+                    ctrl.Readings = response.data.reverse();
                     ctrl.loadResults = true;
                     m.redraw(true);
                     return response;
