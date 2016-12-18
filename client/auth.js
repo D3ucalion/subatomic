@@ -98,7 +98,7 @@ auth = {
     },
     view: function(ctrl){
         return m('.container.center', [
-            m("div.signin.center", [ 
+            m("div.section.signin.center", [ 
           			m("div.row", [
             			m(".col.s12.form-box", [
             				m(".row", [

@@ -49,10 +49,10 @@ chat = {
                 console.log("removed");
             }
         });
-        
+
         ctrl.msgQuery;
         ctrl.msgHandle;
-        
+
         ctrl.chatBot = (m, x) => {
             console.log("Chat BoT initialized." + m.toLowerCase());
 
@@ -187,8 +187,9 @@ chat = {
             })
         }
         ctrl.selectRoom = (r) => {
-
-            ctrl.selectedRoom = r == null || r == undefined ? "Default" : r.target.id;
+            let room = r == null || r == undefined ? "Default" : r;
+            let roomIsClickEvent = room.target == null || room.target == undefined ? room : room.target;
+            ctrl.selectedRoom = roomIsClickEvent.id == null || roomIsClickEvent == undefined ? roomIsClickEvent : roomIsClickEvent.id;
             console.log(ctrl.selectedRoom);
             r == null || r == undefined ? "" : ctrl.msgHandle.stop();
             ctrl.chatSub = [];
@@ -196,33 +197,33 @@ chat = {
                 room: ctrl.selectedRoom
             });
             ctrl.msgHandle = ctrl.msgQuery.observeChanges({
-            changed: (id, chatAttr) => {
-                console.log('changed');
-                for (let value of ctrl.chatSub) {
-                    console.log(value.id);
-                    value.cid == id ? value.text = chatAttr.text : '';
-                    value.cid == id ? value.edited = true : '';
+                changed: (id, chatAttr) => {
+                    console.log('changed');
+                    for (let value of ctrl.chatSub) {
+                        console.log(value.id);
+                        value.cid == id ? value.text = chatAttr.text : '';
+                        value.cid == id ? value.edited = true : '';
 
-                }
-                m.redraw(true);
-            },
-            added: (id, chatAttr) => {
-                chatAttr.cid = id;
-                ctrl.chatSub.push(chatAttr);
-                console.log('added');
-                let debounce = Meteor.sharedFunctions.debounce(() => {
-                    console.log('redrawing');
-                    ctrl.loadResults = true;
+                    }
                     m.redraw(true);
-                }, 200, false);
+                },
+                added: (id, chatAttr) => {
+                    chatAttr.cid = id;
+                    ctrl.chatSub.push(chatAttr);
+                    console.log('added');
+                    let debounce = Meteor.sharedFunctions.debounce(() => {
+                        console.log('redrawing');
+                        ctrl.loadResults = true;
+                        m.redraw(true);
+                    }, 200, false);
 
-                ctrl.debounce(debounce);
-            },
-            removed: (id, chatAttr) => {
+                    ctrl.debounce(debounce);
+                },
+                removed: (id, chatAttr) => {
 
-                console.log("removed");
-            }
-        })
+                    console.log("removed");
+                }
+            })
         }
         ctrl.selectRoom();
         ctrl.editMessage = (e) => {
@@ -266,49 +267,49 @@ chat = {
     },
     view: (ctrl) => {
 
-        return m(".container", [ m('.section', [
+        return m(".container", [m('.section', [
       m(".row", [
         ctrl.editingRoom == false ? m(".col.s12", [
           m(".card.hoverable.grey.darken-4", [
-            m(".card-content#chatWell",m(".row", [m(".col.s3", ctrl.loadResults ? ctrl.rooms.map((res) => {
-                    return [
+            m(".card-content#chatWell", m(".row", [m(".col.s3", ctrl.loadResults ? ctrl.rooms.map((res) => {
+                                return [
               m("tr.mono.light-blue-text.text-lighten-5", [m('td', [m('span', {
-                            class: ctrl.selectedRoom == res.room ? "active mono Pointer glow-font" : "mono Pointer",
-                            id: res.room,
-                            onclick: ctrl.selectRoom
-                        }, res.room + " ", [res.owner == Meteor.userId() ? m('i.tiny.material-icons.prefix.glow-font.active.Pointer', {
-                            id: res.room,
-                            onclick: ctrl.editRoom
-                        }, 'settings') : ''])])])
+                                        class: ctrl.selectedRoom == res.room ? "active mono Pointer glow-font" : "mono Pointer",
+                                        id: res.room,
+                                        onclick: ctrl.selectRoom
+                                    }, res.room + " ", [res.owner == Meteor.userId() ? m('i.tiny.material-icons.prefix.glow-font.active.Pointer', {
+                                        id: res.room,
+                                        onclick: ctrl.editRoom
+                                    }, 'settings') : ''])])])
 
             ]
-                }) : [m('span.mono', ' Loading...')], m('div.input-field', [m('label.mono#label[for="roomSend"]', "create room")], [m('input.mono.glow-font#roomSend[name="roomSend"][minlength="3"][type="text"]', {
-                    onchange: ctrl.sendRoom
-                })])),
-        m(".col.s9", [m('span.card-title.mono', "Chat")],
-                            m('table', [m('thead', [m('tr', [m('th[data-field="name"]')], [m('th[data-field="message"]')])])], [m('tbody#chatLog', {
-                                    config: () => {
-                                        let dbncScroll = Meteor.sharedFunctions.debounce(() => {
-                                            let chatLog = document.getElementById("chatLog");
-                                            chatLog.scrollTop = chatLog.scrollHeight
-                                        }, 300)
-                                        dbncScroll();
-                                    }
-                                },
-                                ctrl.loadResults ? ctrl.chatSub.map((res) => {
-                                    return [
+                            }) : [m('span.mono', ' Loading...')], m('div.input-field', [m('label.mono.hide-on-small-and-down#label[for="roomSend"]', "create room")], [m('input.mono.glow-font#roomSend[name="roomSend"][minlength="3"][type="text"]', {
+                                onchange: ctrl.sendRoom
+                            })])),
+        m(".col.s9", [m('span.card-title.mono', ctrl.selectedRoom + " Chat")],
+                                m('table', [m('thead', [m('tr', [m('th[data-field="name"]')], [m('th[data-field="message"]')])])], [m('tbody#chatLog', {
+                                        config: () => {
+                                            let dbncScroll = Meteor.sharedFunctions.debounce(() => {
+                                                let chatLog = document.getElementById("chatLog");
+                                                chatLog.scrollTop = chatLog.scrollHeight
+                                            }, 300)
+                                            dbncScroll();
+                                        }
+                                    },
+                                    ctrl.loadResults ? ctrl.chatSub.map((res) => {
+                                        return [
               m("tr.mono.light-blue-text.text-lighten-5", [m('td', {
-                                            class: res.name == "chatbot" ? "mono active glow-font" : "mono"
-                                        }, [m('img.small.responsive-img.circle', {
-                                            src: res.photo
-                                        })], " " + res.name, [m('i.timestamp', " " + moment(res.timestamp).fromNow()), m('i.timestamp.glow-font', res.edited == true ? " *edited*" : '')], [m('br'), new ctrl.msgEditCtr({
-                                            text: res.text,
-                                            id: res.id,
-                                            user: res.user
-                                        })])])
+                                                class: res.name == "chatbot" ? "mono active glow-font" : "mono"
+                                            }, [m('img.small.responsive-img.circle', {
+                                                src: res.photo
+                                            })], " " + res.name, [m('i.timestamp', " " + moment(res.timestamp).fromNow()), m('i.timestamp.glow-font', res.edited == true ? " *edited*" : '')], [m('br'), new ctrl.msgEditCtr({
+                                                text: res.text,
+                                                id: res.id,
+                                                user: res.user
+                                            })])])
 
             ]
-                                }) : [m('span.mono', ' Loading...')])], [m('br'),
+                                    }) : [m('span.mono', ' Loading...')])], [m('br'),
                                     ], m('div.input-field', [m('i.material-icons.prefix.mono.glow-font', 'chat_bubble')], [m('label.mono#label[for="chatSend"]', "Type a message")], [m('input.mono#chatSend[name="chatSend"][minlength="3"][type="text"]')])))]))
           ])
       ]) : m(".col.s12", [

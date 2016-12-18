@@ -79,7 +79,7 @@ var Menu = {
                 nav("Blog", "/blog/1"),
           		nav("Contact", "/contact"),
                 Session.get('user') != null || undefined ? nav("Chat", "/chat") : '',
-                navDropdown("Tools", {route1: "/template-converter", name1:"Mithril Converter", route2: "/base64", name2: "Base64 converter"}),
+                navDropdown("Tools", {route1: "/template-converter", name1:"Mithril Converter", route2: "/base64", name2: "Base64 converter", route3: "/hygro", name3: "Hygrometer"}),
                 Session.get('user') != null || undefined ? m('li', m('a.dropdown-button[data-activates="accountDropdown"]', m('img.circle.responsive-img', {
                             src: Session.get('photo')
                         }), m("i.material-icons.right", "arrow_drop_down"))) : nav("Sign in", "/auth")
@@ -135,7 +135,7 @@ var Menu = {
               m("li.divider"),
               m("li", [m("a.Pointer.blue-text.text-lighten-4",{onclick: ()=> {m.route(routes.route2)}}, routes.name2)]),
               m("li.divider"),
-              m("li", [m("a.Pointer.blue-text.text-lighten-4", "Coming soon")])
+              m("li", [m("a.Pointer.blue-text.text-lighten-4",{onclick: ()=> {m.route(routes.route3)}}, routes.name3)])
              ]), [
           m('a.nonMobile.dropdown-button[data-activates="navDropdown"]',[m("i.material-icons.right", "arrow_drop_down")], name)
         ]);
@@ -287,6 +287,7 @@ App.controller = reactive(() => {
     Home = new Page(home);
     About = new Page(about);
     Contact = new Page(contact);
+    Hygro = new Page(hygro);
     Auth = new Page(auth);
     TemplateConverter = new Page(templateConverter);
     Base64 = new Page(base64);
@@ -313,6 +314,7 @@ App.controller = reactive(() => {
         "/": Home,
         "/about": About,
         "/contact": Contact,
+        "/hygro": Hygro,
         "/auth": Auth,
         "/template-converter": TemplateConverter,
         "/base64": Base64,

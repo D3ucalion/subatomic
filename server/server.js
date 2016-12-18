@@ -55,6 +55,20 @@
          v.return(todos);
          return v.wait();
      },
+     'HygroItems': function () {
+         Future = Npm.require('fibers/future');
+         let v = new Future();
+         this.unblock();
+         var res = HTTP.call('GET', 'http://localhost:51800/api/hygro/',
+             function (err, res1) {
+                 if (err) {
+                     v.return(err);
+                 } else {
+                     v.return(res1);
+                 }
+             });
+         return v.wait();
+     },
      'addMessages': function (e) {
 
          Future = Npm.require('fibers/future');

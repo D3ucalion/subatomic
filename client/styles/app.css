@@ -30,6 +30,7 @@ body{
   background: #FFF url(/images/BG2.jpg) top left repeat;
   height: 100%;
 }
+
 .chatbot{
     color: red;
 }
@@ -195,7 +196,7 @@ a.nonMobile{
 }
 .signin {
   margin: auto;
-  max-width: 65%;
+  max-width: 55%;
 }
 .page-header{
   background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgeG1sbnM9Imh0d…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz48L3N2Zz4=);
